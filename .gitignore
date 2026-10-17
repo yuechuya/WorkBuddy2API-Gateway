@@ -1,0 +1,48 @@
+# ── 凭证与密钥（绝不入库）────────────────────────────────────────────
+auths/
+data/
+*.key
+*.pem
+*.env
+.env
+.env.*
+
+# ── 含密钥的本地配置（模板用 config.example.json）──────────────────────
+config.json
+
+# ── 本地构建产物与运行日志（发布走 GitHub Releases，不进 git 历史）────────
+bin/
+logs/
+*.tmp
+__pycache__/
+*.zip
+server.exe
+.DS_Store
+# 仓库根目录的裸二进制（锚定根目录：裸 "login"/"credit" 会误伤 cmd/login/、cmd/credit/）
+/login
+/credit
+/wb2api
+/signin_bin
+/wb2api.exe
+/login.exe
+/credit.exe
+/signin_bin.exe
+
+# ── 备份（含 token）─────────────────────────────────────────────────
+backups/
+
+# ── 本地验证工具（判据逆向过程脚本）──────────────────────────────────
+/cmd/desktopverify*/
+
+# ── IDE ───────────────────────────────────────────────────────────
+.idea/
+.vscode/
+
+# ── 工作文档：*.md 默认不进库，白名单显式放行 ─────────────────────────
+LOOP.md
+PLAN.md
+SPEC.md
+*.md
+!README.md
+!docs/user-manual.md
+!docs/publishing.md

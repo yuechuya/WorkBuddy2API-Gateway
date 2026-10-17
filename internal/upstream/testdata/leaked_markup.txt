@@ -1,0 +1,10 @@
+我先看一下仓库结构和图片内容，再定位价格同步逻辑。
+
+<｜｜DSML｜｜ calls>
+<｜｜DSML｜｜ invoke name="exec_command">
+<｜｜DSML｜｜ parameter name="cmd" string="true">cd /home/user/project && git status --short && ls -a | head -50 && ls -d .codegraph 2>/dev/null || echo "NO_CODEGRAPH"</｜｜DSML｜｜ parameter>
+</｜｜DSML｜｜ invoke>
+<｜｜DSML｜｜ invoke name="exec_command">
+<｜｜DSML｜｜ parameter name="cmd" string="true">curl -sS -o /tmp/sync_price_question.png "https://example.com/image.png" && ls -la /tmp/sync_price_question.png</｜｜DSML｜｜ parameter>
+</｜｜DSML｜｜ invoke>
+</｜｜DSML｜｜ calls>
