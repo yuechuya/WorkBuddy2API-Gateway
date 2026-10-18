@@ -76,7 +76,9 @@ jobs:
           fi
           echo "version assert OK: ${{ steps.ver.outputs.v }}"
 
-      - name: 打包（windows=zip 三件套，其余=tar.gz）
+      # 打包（windows=zip：exe + start/stop.bat + 示例配置 + README；其余平台=tar.gz）
+      # 注意：zip 内 wb2api.exe 在根目录，start.bat 同时兼容根目录与 bin\ 两种布局
+      - name: 打包（windows=zip 五件套，其余=tar.gz）
         run: |
           V="${{ steps.ver.outputs.v }}"
           V="${V%-panel}"; V="${V%-gateway}"   # 文件名不带 -panel/-gateway 后缀

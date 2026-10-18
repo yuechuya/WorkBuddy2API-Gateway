@@ -1,0 +1,5 @@
+# Windows 批处理按 GBK + CRLF 原样入库：
+# cmd 按控制台代码页解析 .bat，UTF-8 中文会乱码串行；行尾统一 CRLF。
+# -text = 禁止 git 做任何行尾/编码转换，保证 Release zip 内字节与本地一致。
+*.bat -text
+*.cmd -text

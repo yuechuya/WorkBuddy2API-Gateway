@@ -1,22 +1,34 @@
 @echo off
-chcp 65001 >nul
 cd /d "%~dp0"
 
-if not exist "bin\wb2api.exe" (
-  echo [ERROR] bin\wb2api.exe not found.
+rem 兼容两种布局：
+rem   - GitHub Release 解压后 wb2api.exe 在脚本同级根目录（zip 五件套）
+rem   - 源码树 / 本地构建时 wb2api.exe 在 bin\ 子目录
+rem 编码约定：本文件必须保持 GBK，禁止另存为 UTF-8
+rem （cmd 按控制台代码页解析批处理，UTF-8 中文会乱码并被误判为命令）
+set "WB2API_EXE="
+if exist "wb2api.exe" set "WB2API_EXE=wb2api.exe"
+if not defined WB2API_EXE (
+  if exist "bin\wb2api.exe" set "WB2API_EXE=bin\wb2api.exe"
+)
+
+if not defined WB2API_EXE (
+  echo [ERROR] wb2api.exe not found.
+  echo         Expected either:
+  echo           %CD%\wb2api.exe
+  echo           %CD%\bin\wb2api.exe
   echo         Get a prebuilt binary from GitHub Releases, or build from source:
   echo         go build -trimpath -ldflags="-s -w" -o bin\wb2api.exe ./cmd/server
   pause
   exit /b 1
 )
 
-rem Idempotent: if :7863 is already listening, skip (a second instance would
-rem just fail to bind and exit -- that is not an error).
+rem 幂等：:7863 已在监听就跳过（再起一个实例也只会绑定失败退出，不算错误）
 netstat -ano | findstr ":7863" | findstr "LISTENING" >nul
 if not errorlevel 1 (
   echo [SKIP] An instance is already listening on :7863
   echo        Health: curl http://127.0.0.1:7863/healthz
-  timeout /t 4 /nobreak >nul
+  ping -n 4 127.0.0.1 >nul
   exit /b 0
 )
 
@@ -31,7 +43,7 @@ echo   Stop   : close this window, or run stop.bat
 echo ============================================================
 echo.
 
-bin\wb2api.exe -config config.json
+"%WB2API_EXE%" -config config.json
 echo.
 echo [Server exited] press any key to close ...
 pause >nul

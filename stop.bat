@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 >nul
 echo Stopping wb2api.exe ...
 taskkill /IM wb2api.exe /F >nul 2>&1
 if errorlevel 1 (
@@ -7,4 +6,4 @@ if errorlevel 1 (
 ) else (
   echo [OK] stopped.
 )
-timeout /t 2 >nul
+ping -n 3 127.0.0.1 >nul

@@ -82,7 +82,7 @@ WorkBuddy2API-Gateway/
 
 双击 `start.bat`。脚本会做四件事：
 
-1. 检查 `bin\wb2api.exe` 存在（不存在则提示去 Releases 下载或源码构建）；
+1. 检查 `wb2api.exe` 存在——Release 解压的 zip 里它在脚本同级根目录，源码树/本地构建时在 `bin\` 子目录，两种布局都认（都没有则提示去 Releases 下载或源码构建）；
 2. 检查 7863 端口——已在监听就打印 `[SKIP]` 直接退出（幂等，不会端口冲突）；
 3. 自动创建 `auths/` 和 `data/` 目录；
 4. 启动服务，窗口里打印面板 / 健康检查地址。
