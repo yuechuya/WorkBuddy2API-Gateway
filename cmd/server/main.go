@@ -32,7 +32,7 @@ import (
 
 // appVersion 网关版本（gateway 分支：多协议入站 + 面板 + 任务体系），
 // 透出到 /panel/api/overview 与 /healthz 之外的面板版本位。
-const appVersion = "2.0.0-gateway"
+const appVersion = "1.0.0-gateway"
 
 // usagePathFor 由 state 文件路径推出用量文件路径：同目录、文件名 usage.json。
 // 这样 config 里改 state_file 时用量数据跟着走，不需要额外配置项。

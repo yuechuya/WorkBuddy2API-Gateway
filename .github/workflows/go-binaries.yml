@@ -82,11 +82,11 @@ jobs:
           V="${V%-panel}"; V="${V%-gateway}"   # 文件名不带 -panel/-gateway 后缀
           case "${{ matrix.goos }}" in
             windows)
-              NAME="wb2api-panel-v${V}-windows-amd64.zip"
-              zip -q "$NAME" wb2api.exe config.example.json README.md
+              NAME="wb2api-gateway-v${V}-windows-amd64.zip"
+              zip -q "$NAME" wb2api.exe start.bat stop.bat config.example.json README.md
               ;;
             *)
-              NAME="wb2api-panel-v${V}-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz"
+              NAME="wb2api-gateway-v${V}-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz"
               tar czf "$NAME" wb2api config.example.json README.md
               ;;
           esac
@@ -135,7 +135,7 @@ jobs:
           echo "prev=${PREV}" >> "$GITHUB_OUTPUT"
       - uses: softprops/action-gh-release@v2
         with:
-          name: ${{ github.ref_name }}-panel
+          name: ${{ github.ref_name }}
           prerelease: ${{ contains(github.ref_name, '-') }}
           body: |
             CI 自动构建发布（五平台二进制 + checksums）。
