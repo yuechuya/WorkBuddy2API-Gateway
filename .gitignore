@@ -46,3 +46,5 @@ SPEC.md
 !README.md
 !docs/user-manual.md
 !docs/publishing.md
+# 代码 go:embed 的提示词模板必须入库（否则 CI 干净 checkout 编译失败）
+!internal/prompt/defaultprompt.md

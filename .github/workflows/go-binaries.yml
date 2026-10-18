@@ -3,7 +3,7 @@ name: go-binaries
 # 可运行二进制构建/发布：
 #   - PR / push main → 测试 + 五平台编译验证（产物仅存 artifact，不发布）
 #   - push v* tag    → 同上 + 打包上传到 GitHub Release（zip/tar.gz + checksums）
-# 固化的发布纪律（曾两次人祸，见仓库 HANDOFF）：-s -w 剥离、二进制版本串 == 源码
+# 固化的发布纪律（曾两次人祸，故写成流程）：-s -w 剥离、二进制版本串 == 源码
 # appVersion、tag 版本 == 源码版本（-ci 后缀的测试 tag 豁免，用于演练发布线）。
 on:
   push:
