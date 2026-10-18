@@ -170,13 +170,15 @@ Responses  /v1/responses ─┘         ↓
 
 ### 方式一：Windows 双击即用
 
-从 [Releases](https://github.com/yuechuya/WorkBuddy2API-Gateway/releases) 下载 `wb2api.exe` 与 `start.bat` / `stop.bat`，解压双击 `start.bat`：
+从 [Releases](https://github.com/yuechuya/WorkBuddy2API-Gateway/releases) 下载 `wb2api-gateway-v*-windows-amd64.zip`，解压双击 `start.bat`：
 
 ```text
 1. 首次启动自动生成 config.json（含随机 api_key，日志打印一次）
 2. 浏览器打开 http://127.0.0.1:7863/   （自动跳转面板）
 3. 右上角「添加账号」完成登录 → 热加载进池，即刻可用
 ```
+
+> ⚠️ **别下成源码包**：仓库首页绿色 `Code → Download ZIP` 下载的是 `<仓库>-main` 源码树，里面**没有**编译好的 `wb2api.exe`，双击 start.bat 会提示找不到。预编译二进制只在 Releases 页面（zip 内 exe 就在根目录，与 start.bat 同级）。
 
 exe 为单文件自包含（面板前端已 embed 进二进制），拷到任意 Windows 机器即可运行，只需保证 `auths/`（凭证）与 `data/`（状态）目录可写。
 
